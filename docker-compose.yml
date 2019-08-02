@@ -1,0 +1,82 @@
+version: '3.1'
+
+services:
+  site:
+    build: ./dmoj-site-docker
+    image: dmoj-site
+    container_name: site
+    volumes:
+      - ./local_settings.py:/site/dmoj/local_settings.py
+      - ./favicons:/site/resources/icons
+      - ${PROBLEMS_PERSISTENT_ROOT}:/problems
+    networks:
+      - db
+      - judges
+      - web
+    labels:
+      - traefik.frontend.rule=Host:pcs.org.au
+      - traefik.port=80
+    environment:
+      WAIT_HOSTS: mysql:3306
+    depends_on:
+      - mysql
+    secrets:
+      - django_secret_key
+      - gmail_password
+      - mysql_password
+    restart: always
+
+  judge:
+    build: ./dmoj-judge-docker
+    image: dmoj-judge
+    container_name: judge
+    privileged: true
+    volumes:
+      - ${PROBLEMS_PERSISTENT_ROOT}:/problems
+    networks:
+      - judges
+    environment:
+      JUDGE_BRIDGED_HOST: site
+      JUDGE_NAME: judge0
+      PYTHON_EGG_CACHE: /tmp/python-eggs
+    depends_on:
+      - site
+    secrets:
+      - judge_key
+    restart: always
+
+  mysql:
+    image: mysql:5.6
+    command: [mysqld, --character-set-server=utf8, --collation-server=utf8_unicode_ci]
+    container_name: mysql
+    volumes:
+      - ${MYSQL_PERSISTENT_ROOT}:/var/lib/mysql
+    networks:
+      - db
+    environment:
+      MYSQL_USER: dmoj
+      MYSQL_DATABASE: dmoj
+      MYSQL_PASSWORD_FILE: /run/secrets/mysql_password
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/mysql_root_password
+    secrets:
+      - mysql_password
+      - mysql_root_password
+    restart: always
+
+networks:
+  db:
+  judges:
+  web:
+    external: true
+
+secrets:
+  django_secret_key:
+    file: secrets/django_secret_key
+  gmail_password:
+    file: secrets/gmail_password
+  judge_key:
+    file: secrets/judge_key
+  mysql_password:
+    file: secrets/mysql_password
+  mysql_root_password:
+    file: secrets/mysql_root_password
