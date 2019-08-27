@@ -50,7 +50,7 @@ DATABASES = {
     }
 }
 
-PROBLEM_DATA_ROOT = '/problems/problems'
+DMOJ_PROBLEM_DATA_ROOT = '/problems/problems'
 
 # Sessions.
 # Documentation: <https://docs.djangoproject.com/en/1.9/topics/http/sessions/>
@@ -211,15 +211,15 @@ SELECT2_CSS_URL = '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.mi
 TIMEZONE_MAP = 'http://naturalearth.springercarto.com/ne3_data/8192/textures/3_no_ice_clouds_8k.jpg'
 
 ## Camo (https://github.com/atmos/camo) usage.
-#CAMO_URL = "<URL to your camo install>"
-#CAMO_KEY = "<The CAMO_KEY environmental variable you used>"
+#DMOJ_CAMO_URL = "<URL to your camo install>"
+#DMOJ_CAMO_KEY = "<The DMOJ_CAMO_KEY environmental variable you used>"
 
 # Domains to exclude from being camo'd.
-#CAMO_EXCLUDE = ("https://dmoj.ml", "https://dmoj.ca")
+#DMOJ_CAMO_EXCLUDE = ("https://dmoj.ml", "https://dmoj.ca")
 
 # Set to True to use https when dealing with protocol-relative URLs.
 # See <http://www.paulirish.com/2010/the-protocol-relative-url/> for what they are.
-#CAMO_HTTPS = False
+#DMOJ_CAMO_HTTPS = False
 
 # HTTPS level. Affects <link rel='canonical'> elements generated.
 # Set to 0 to make http URLs canonical.
@@ -229,20 +229,20 @@ DMOJ_HTTPS = 2
 
 ## PDF rendering settings.
 # Directory to cache the PDF.
-PROBLEM_PDF_CACHE = '/problems/pdfcache'
+DMOJ_PDF_PROBLEM_CACHE = '/problems/pdfcache'
 
 # Path to use for nginx's X-Accel-Redirect feature.
 # Should be an internal location mapped to the above directory.
-PROBLEM_PDF_INTERNAL = '/pdfcache'
+DMOJ_PDF_PROBLEM_INTERNAL = '/pdfcache'
 
 # Path to a PhantomJS executable.
 PHANTOMJS = '/usr/local/bin/phantomjs'
 PHANTOMJS_PAPER_SIZE = 'A4'
 
 # Make performance_points remotely sane
-PP_STEP = 1
-PP_BONUS_FUNCTION = lambda _: 0
-PP_ENTRIES = 1500
+DMOJ_PP_STEP = 1
+DMOJ_PP_BONUS_FUNCTION = lambda _: 0
+DMOJ_PP_ENTRIES = 1500
 
 # If you can't use PhantomJS or prefer wkhtmltopdf, set the path to wkhtmltopdf executable instead.
 #WKHTMLTOPDF = '/usr/local/bin/wkhtmltopdf'
