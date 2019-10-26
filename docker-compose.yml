@@ -2,8 +2,7 @@ version: '3.1'
 
 services:
   site:
-    build: ./dmoj-site-docker
-    image: dmoj-site
+    image: uwapcs/dmoj-site:20191026052010be0d10
     container_name: site
     volumes:
       - ./local_settings.py:/site/dmoj/local_settings.py
@@ -27,8 +26,7 @@ services:
     restart: always
 
   judge:
-    build: ./dmoj-judge-docker
-    image: dmoj-judge
+    image: uwapcs/dmoj-judge:201910260424514cf7b2
     container_name: judge
     privileged: true
     volumes:
