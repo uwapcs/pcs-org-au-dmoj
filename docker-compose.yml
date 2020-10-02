@@ -2,7 +2,7 @@ version: '3.1'
 
 services:
   site:
-    image: uwapcs/dmoj-site:20191026052010be0d10
+    image: uwapcs/dmoj-site:20201002120228dab81a
     container_name: site
     volumes:
       - ./local_settings.py:/site/dmoj/local_settings.py
@@ -23,6 +23,8 @@ services:
       - django_secret_key
       - gmail_password
       - mysql_password
+      - recaptcha_public_key
+      - recaptcha_private_key
     restart: always
 
   judge:
@@ -78,3 +80,7 @@ secrets:
     file: secrets/mysql_password
   mysql_root_password:
     file: secrets/mysql_root_password
+  recaptcha_public_key:
+    file: secrets/recaptcha/recaptcha_public_key
+  recaptcha_private_key:
+    file: secrets/recaptcha/recaptcha_private_key

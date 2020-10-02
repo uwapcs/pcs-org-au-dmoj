@@ -24,7 +24,12 @@ ALLOWED_HOSTS = ['pcs.org.au']
 
 # Optional apps that DMOJ can make use of.
 INSTALLED_APPS += (
+    'snowpenguin.django.recaptcha2',  # reCAPTCHA support
 )
+
+# Keys for reCAPTCHA support
+RECAPTCHA_PUBLIC_KEY = get_docker_secret('recaptcha_public_key')
+RECAPTCHA_PRIVATE_KEY = get_docker_secret('recaptcha_private_key')
 
 # Caching. You can use memcached or redis instead.
 # Documentation: <https://docs.djangoproject.com/en/1.9/topics/cache/>
