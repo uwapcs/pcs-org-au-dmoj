@@ -1,3 +1,9 @@
 [submodule "favicons"]
 	path = favicons
 	url = https://github.com/uwapcs/favicons.git
+[submodule "dmoj-judge-docker"]
+	path = dmoj-judge-docker
+	url = https://github.com/uwapcs/dmoj-judge-docker.git
+[submodule "dmoj-site-docker"]
+	path = dmoj-site-docker
+	url = https://github.com/uwapcs/dmoj-site-docker.git
