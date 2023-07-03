@@ -13,7 +13,7 @@ services:
       - judges
       - web
     labels:
-      - traefik.frontend.rule=Host:pcs.org.au
+      - traefik.frontend.rule=Host:contests.pcs.org.au
       - traefik.port=80
     environment:
       WAIT_HOSTS: mysql:3306
