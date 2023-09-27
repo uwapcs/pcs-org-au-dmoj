@@ -16,7 +16,7 @@ from get_docker_secret import get_docker_secret
 SECRET_KEY = get_docker_secret('django_secret_key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True  # Change to False once you are done with runserver testing.
+DEBUG = False  # Change to False once you are done with runserver testing.
 
 # Uncomment and set to the domain names this site is intended to serve.
 # You must do this once you set DEBUG to False.
