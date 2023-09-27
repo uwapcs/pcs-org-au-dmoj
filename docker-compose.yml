@@ -1,4 +1,4 @@
-version: '3.1'
+version: '3.8'
 
 services:
   site:
@@ -26,26 +26,28 @@ services:
       - mysql_password
       - recaptcha_public_key
       - recaptcha_private_key
-    restart: always
+    restart: "no"
+    tty: true
+    stdin_open: true
 
-  judge:
-    build: ./dmoj-judge-docker
-    image: dmoj-judge
-    container_name: judge
-    privileged: true
-    volumes:
-      - ${PROBLEMS_PERSISTENT_ROOT}:/problems
-    networks:
-      - judges
-    environment:
-      JUDGE_BRIDGED_HOST: site
-      JUDGE_NAME: judge0
-      PYTHON_EGG_CACHE: /tmp/python-eggs
-    depends_on:
-      - site
-    secrets:
-      - judge_key
-    restart: always
+      #  judge:
+      #build: ./dmoj-judge-docker
+      #image: dmoj-judge
+      #container_name: judge
+      #privileged: true
+      #volumes:
+      #- ${PROBLEMS_PERSISTENT_ROOT}:/problems
+      #networks:
+      #- judges
+      #environment:
+      #JUDGE_BRIDGED_HOST: site
+      #JUDGE_NAME: judge0
+      #PYTHON_EGG_CACHE: /tmp/python-eggs
+      #depends_on:
+      #- site
+      #secrets:
+      #- judge_key
+      #restart: always
 
   mysql:
     image: mysql:5.6
