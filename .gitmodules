@@ -3,7 +3,7 @@
 	url = https://github.com/uwapcs/favicons.git
 [submodule "dmoj-judge-docker"]
 	path = dmoj-judge-docker
-	url = ./dmoj-judge-docker
+	url = https://github.com/uwapcs/dmoj-judge-docker.git
 	branch = rewrite
 [submodule "dmoj-site-docker"]
 	path = dmoj-site-docker
