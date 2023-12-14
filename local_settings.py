@@ -305,7 +305,7 @@ LOGGING = {
         'django.request': {
             'handlers': ['mail_admins'],
             'level': 'ERROR',
-            'propagate': False,
+            'propagate': True,
         },
         # Judging logs as received by bridged.
         'judge.bridge': {
